@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9391F06A-2CD1-4361-9781-D86FFD7B0409}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assignment.OnlineRetailStore.Business</RootNamespace>
+    <AssemblyName>Assignment.OnlineRetailStore.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Factory\OrderBusinessFactory.cs" />
+    <Compile Include="Factory\ProductBusinessFactory.cs" />
+    <Compile Include="Factory\ProductCategoryBusinessFactory.cs" />
+    <Compile Include="Factory\StoreDbContextFactory.cs" />
+    <Compile Include="Interfaces\IOrderBusiness.cs" />
+    <Compile Include="Interfaces\IProductBusiness.cs" />
+    <Compile Include="Interfaces\IProductCategoryBusiness.cs" />
+    <Compile Include="OrderBusiness.cs" />
+    <Compile Include="ProductBusiness.cs" />
+    <Compile Include="ProductCategoryBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Assignment.OnlineRetailStore.IoC\Assignment.OnlineRetailStore.IoC.csproj">
+      <Project>{2EE4EFC9-9558-4E4F-AE0D-DBA37E114310}</Project>
+      <Name>Assignment.OnlineRetailStore.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assignment.OnlineRetailStore.Models\Assignment.OnlineRetailStore.Models.csproj">
+      <Project>{CBC63E82-AD4B-43E7-B36E-16285892AB18}</Project>
+      <Name>Assignment.OnlineRetailStore.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assignment.OnlineRetailStore.Repository\Assignment.OnlineRetailStore.Repository.csproj">
+      <Project>{c66e5b38-a712-4a31-9ac0-3b7089934c14}</Project>
+      <Name>Assignment.OnlineRetailStore.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
