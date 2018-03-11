@@ -15,8 +15,9 @@ namespace Assignment.OnlineRetailStore.Repository
         public IProductRepository Products { get; set; }
 
         public IOrderRepository Orders { get; set; }
+		//Change the connection string below
         public StoreDbContext()
-           : base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\pgupta\\documents\\visual studio 2017\\Projects\\Assignment.OnlineRetailStore\\Assignment.OnlineRetailStore.Repository\\localdata\\StoreDB.mdf;Integrated Security=True")
+           : base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\<<urusername>>\\documents\\visual studio 2017\\Projects\\Assignment.OnlineRetailStore\\Assignment.OnlineRetailStore.Repository\\localdata\\StoreDB.mdf;Integrated Security=True")
         {
             this.Configuration.LazyLoadingEnabled = false;
             Products = new ProductRepository(this);
