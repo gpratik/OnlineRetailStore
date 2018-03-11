@@ -17,25 +17,17 @@ namespace Assignment.OnlineRetailStore.Repository
         public IOrderRepository Orders { get; set; }
 		//Change the connection string below
         public StoreDbContext()
-           : base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\<<urusername>>\\documents\\visual studio 2017\\Projects\\Assignment.OnlineRetailStore\\Assignment.OnlineRetailStore.Repository\\localdata\\StoreDB.mdf;Integrated Security=True")
+           : base("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\pgupta]\\Documents\\GitHub\\OnlineRetailStore\\Assignment.OnlineRetailStore.Repository\\localdata\\StoreDB.mdf;Integrated Security=True")
         {
             this.Configuration.LazyLoadingEnabled = false;
             Products = new ProductRepository(this);
             Orders = new OrderRepository(this);
             ProductCategory = new ProductCategoryRepository(this);
-        }
-
-        //public virtual DbSet<Product> Products { get; set; }
-        //public virtual DbSet<Order> Orders { get; set; }
-
-        //public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-
-
+        }      
 
         public int Complete()
         {
             return this.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

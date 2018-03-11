@@ -41,28 +41,7 @@ namespace Assignment.OnlineRetailStore.IoC
             return instance as T;
         }
 
-        public static T CreateInstance<T>(Func<T> defaultImplementation, params object[] args) where T : class
-        {
-            if (args == null)
-                args = _noParams;
-
-            EnsureContainer();
-
-            object instance;
-
-            _container.TryResolveService(
-                new Autofac.Core.TypedService(typeof(T)),
-                args.Select((item, index) => new PositionalParameter(index, item)),
-                out instance);
-
-            if (instance == null)
-            {
-                instance = defaultImplementation();
-                if (instance == null)
-                    throw new ApplicationException("Cannot find implementation for '" + typeof(T).FullName + "'");
-            }
-            return instance as T;
-        }
+      
 
         public void Build()
         {

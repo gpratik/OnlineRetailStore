@@ -29,64 +29,7 @@ namespace Assignment.OnlineRetailStore.IoC
             EnsureBuilder();
             _builder.RegisterInstance(instance);
         }
-
-        public void RegisterLambdaAsInterface<T>(Func<T> expr) where T : class
-        {
-            EnsureBuilder();
-            _builder.Register<T>(c => expr());
-        }
-
-        public void RegisterLambdaAsInterface<T>(Func<object[], T> expr) where T : class
-        {
-            EnsureBuilder();
-            _builder.Register<T>((c, parameters) =>
-            {
-                var args = parameters
-                    .OfType<PositionalParameter>()
-                    .Select(p => p.Value)
-                    .ToArray();
-
-                return expr(args);
-            });
-        }
-
-        public void RegisterAssemblyTypes(Assembly assembly, Func<Type, bool> predicate)
-        {
-            EnsureBuilder();
-            _builder.RegisterAssemblyTypes(assembly)
-                .Where(predicate)
-                .AsImplementedInterfaces();
-        }
-
-        public void RegisterApiControllers(params Assembly[] controllerAssemblies)
-        {
-            EnsureBuilder();
-            _builder.RegisterApiControllers(controllerAssemblies);
-        }
-
-        public void RegisterForWebApi(Owin.IAppBuilder owinApp, System.Web.Http.HttpConfiguration webApi)
-        {
-            EnsureBuilderContainer();
-            var scope = _container.BeginLifetimeScope();
-            webApi.DependencyResolver = new AutofacWebApiDependencyResolver(scope);
-            owinApp.UseAutofacMiddleware(scope);
-            //owinApp.UseAutofacWebApi(webApi); // TODO: Adding needed "Autofac.WebApi2.Owin" nuget package causes "System.Web.Http.Owin" dependency error
-        }
-
-        public void RegisterForWebApi(System.Web.Http.HttpConfiguration webApi)
-        {
-            EnsureBuilderContainer();
-            webApi.DependencyResolver = new AutofacWebApiDependencyResolver(_container.BeginLifetimeScope());
-        }
-
-        public void RegisterMVCControllers(Assembly controllerAssemblie)
-        {
-            EnsureBuilder();
-            _builder.RegisterControllers(controllerAssemblie);
-            EnsureBuilderContainer();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(_container));
-        }
-
+       
         private void EnsureBuilder()
         {
             if (_builder == null)
@@ -96,7 +39,7 @@ namespace Assignment.OnlineRetailStore.IoC
         private void EnsureBuilderContainer()
         {
             if (_builder == null)
-                return; // Nothing to do. No new registrations since previous call to EnsureContainer.
+                return;
             if (_container == null)
                 _container = _builder.Build();
             else
